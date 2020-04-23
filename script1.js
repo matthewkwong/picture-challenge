@@ -18,10 +18,9 @@ if(navigator.mediaDevices.getUserMedia) {
 
 // Timer function to take pictures every 1 second
 
-// let timerId = setInterval(() => console.log('tick'), 1000);
-
-function timerId(){
-    setInterval(() => console.log('tick'), 1000);   
+function timer(){
+    // eventually replace the photo taking function;
+    setInterval(() => console.log('photo taken'), 1000);   
 }
 
-timerId();
+timer();
