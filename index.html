@@ -7,20 +7,14 @@
     <title>Video Camera</title>
 </head>
     <body>
+        <!-- https://developers.google.com/web/fundamentals/media/capturing-images -->
 
-        <!-- Video stream -->
-        <div id="container">
-            <video autoplay = "true" id = "videoElement"> </video>
-        </div>
+        <button id="capture">Capture</button>
 
-        
-        <div class = "output">
-            <canvas id='canvas'></canvas>
+        <div id = "output">
+            <video id="player" autoplay></video>
 
-            <!-- Photos would be displayed here -->
-            <!-- <img src = "https://www.lego.com/cdn/cs/set/assets/blt35b36a3b43bf5d27/404-page-minifigure.jpg?quality=80" height = "200">
-            <img src = "https://www.lego.com/cdn/cs/set/assets/blt35b36a3b43bf5d27/404-page-minifigure.jpg?quality=80" height = "200">
-            <img src = "https://www.lego.com/cdn/cs/set/assets/blt35b36a3b43bf5d27/404-page-minifigure.jpg?quality=80" height = "200"> -->
+            <canvas id="canvas" width = 400 height = 240></canvas>
         </div>
 
         <script src = "script1.js"></script>

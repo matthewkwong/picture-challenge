@@ -3,12 +3,16 @@ video{
 }
 
 
-.output{
-    padding: 20px;
-    display: inline;
+#output{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
+#capture{
+    display: none;
+}
 
-img{
-
+canvas{
+    height: 200px;
 }
