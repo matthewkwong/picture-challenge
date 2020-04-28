@@ -36,6 +36,7 @@ picture = () => {
   // var containerDiv = document.createElement("div");
   // containerDiv.appendChild(newCanvas);
   // Make new canvas
+  
   console.log("new canvas");
   var newCanvas = document.createElement("CANVAS");
   var ctx = newCanvas.getContext("2d");

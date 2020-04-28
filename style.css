@@ -1,17 +1,14 @@
-video{
-    /* height: 240px; */
-}
+#player{
+    height: 240px;
+    padding: 10px;
+}   
 
-#output{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    border: solid 2px black;
+#canvas{
+    display: none;
 }
 
 canvas{
-    border: solid 2px red;
-    height: 200px;
     padding: 10px;
+    height: 240px;
+    width: 426.66px;
 }
