@@ -1,18 +1,17 @@
 video{
-    height: 200px;
+    /* height: 240px; */
 }
-
 
 #output{
     display: flex;
     flex-direction: row;
     width: 100%;
-}
-
-#capture{
-    display: none;
+    height: 100%;
+    border: solid 2px black;
 }
 
 canvas{
+    border: solid 2px red;
     height: 200px;
+    padding: 10px;
 }
