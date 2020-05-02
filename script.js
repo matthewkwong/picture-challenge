@@ -9,7 +9,6 @@ const constraints = {
 };
 
 
-
 // Checks if user lets camera permissions on
 var successCallback = function() {
   console.log("User accepted camera permission");
@@ -59,11 +58,11 @@ const picture = () => {
 
   
   // 1. Determine camera ratio
-  const playerHeight = player.videoHeight;
-  const playerWidth = player.videoWidth;
+  const playerHeight = player.videoHeight * 0.3;
+  const playerWidth = player.videoWidth * 0.3;
 
-
-
+  player.height = playerHeight;
+  player.width = playerWidth;
   
   // 2. Set newCanvas ratio to same as camera
   newCanvas.height = playerHeight;
@@ -78,7 +77,7 @@ const picture = () => {
   console.log("Photo drawn to newCanvas");
   ctx.drawImage(player, 0, 0, newCanvas.width, newCanvas.height);
   
-  // Use unshift to add the newest newCanvas to pictureArray
+  // Use unshift to add the newest newCanvas to the front of pictureArray
   pictureArray.unshift(newCanvas);
   
   // Adds the newCanvas to the page
