@@ -1,20 +1,17 @@
-#player{
-    height: 240px;
-    padding: 10px;
-}   
+body{
+    margin:0;
+}
 
-#canvas{
-    display: none;
+canvas{
+    /* display: none; */
+    box-sizing: content-box;
+    border: solid 2px blue;
 }
 
 #output-container{
+    box-sizing: content-box;
     border: solid 2px red;
     display: flex;  
     flex-wrap: wrap;
 }
 
-canvas{
-    padding: 10px;
-    height: 240px;
-    width: 426.66px;
-}

@@ -1,10 +1,7 @@
 const player = document.getElementById('player');
-const canvas = document.getElementById('canvas');
-const context = canvas.getContext('2d');
-const captureButton = document.getElementById('capture');
-
-//output container
 const containerDiv = document.getElementById("output-container");
+
+
 
 // Default camera permission is on
 const constraints = {
@@ -12,8 +9,10 @@ const constraints = {
 };
 
 
+
 // Checks if user lets camera permissions on
 var successCallback = function() {
+  console.log("User accepted camera permission");
   timer();
 };
 
@@ -25,41 +24,69 @@ var errorCallback = function() {
 
 
 // Attach the video stream to the video element and autoplay.
-navigator.mediaDevices.getUserMedia(constraints)
-    .then((stream) => {
-    player.srcObject = stream;
+const userMediaPromise = navigator.mediaDevices.getUserMedia(constraints); 
 
-    // Checks if users approve video camera 
-    successCallback();
-    errorCallback();
-});
+const cameraSuccess = function(stream) {
 
+  player.srcObject = stream;
 
-
+  // Checks if users approve video camera 
+  successCallback();
+  errorCallback();
 
 
 
-// Picture taking function
-picture = () => {
+  // 2. Assign ratios to canvas
 
-  console.log("new canvas");
-  var newCanvas = document.createElement("CANVAS");
-  var ctx = newCanvas.getContext("2d");
-
-  // Draws the video frame to the canvas
-  console.log("photo taken");
-  ctx.drawImage(player, 0, 0, canvas.width, canvas.height);
-  document.body.appendChild(newCanvas);
-
-  // Reverse output - newest is first upon output
-  // newCanvas.prepend(newFirstChild);
-
-  // puts picture into the output container
-  containerDiv.appendChild(newCanvas);
 }
 
+// run this function when promise succeeds!
+userMediaPromise.then(cameraSuccess);
+
+
+// ADD CATCH TO DISPLAY TO USERS CAMERA DOES NOT WORK
+userMediaPromise.catch();
+
+
+const pictureArray = [];
+
+// Picture taking function
+const picture = () => {
+
+  console.log("new canvas");
+  const newCanvas = document.createElement("CANVAS");
+  const ctx = newCanvas.getContext("2d");
+
+  
+  // 1. Determine camera ratio
+  const playerHeight = player.videoHeight;
+  const playerWidth = player.videoWidth;
+
+
+
+  
+  // 2. Set newCanvas ratio to same as camera
+  newCanvas.height = playerHeight;
+  newCanvas.width = playerWidth;
+  
+  console.log("New Canvas:");  
+  console.log(newCanvas.height);  
+  console.log(newCanvas.width);
+
+
+  // Draws the video frame to the canvas
+  console.log("Photo drawn to newCanvas");
+  ctx.drawImage(player, 0, 0, newCanvas.width, newCanvas.height);
+  
+  // Use unshift to add the newest newCanvas to pictureArray
+  pictureArray.unshift(newCanvas);
+  
+  // Adds the newCanvas to the page
+  console.log(pictureArray);
+  containerDiv.appendChild(newCanvas); 
+}
 
 // 1 second timer to take pics
-timer = () => {
-  setInterval(() => picture(), 1000);   
+const timer = () => {
+  setInterval(picture, 1000);   
 }
