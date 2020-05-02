@@ -33,8 +33,6 @@ const cameraSuccess = function(stream) {
   successCallback();
   errorCallback();
 
-
-
   // 2. Assign ratios to canvas
 
 }
@@ -46,7 +44,7 @@ userMediaPromise.then(cameraSuccess);
 // ADD CATCH TO DISPLAY TO USERS CAMERA DOES NOT WORK
 userMediaPromise.catch();
 
-
+let i = 0;
 const pictureArray = [];
 
 // Picture taking function
@@ -61,31 +59,27 @@ const picture = () => {
   const playerHeight = player.videoHeight * 0.3;
   const playerWidth = player.videoWidth * 0.3;
 
+  // 2. Sets the actual video stream height to match the newCanvas ratio
   player.height = playerHeight;
   player.width = playerWidth;
   
-  // 2. Set newCanvas ratio to same as camera
+  // 3. Set newCanvas ratio to same as camera
   newCanvas.height = playerHeight;
   newCanvas.width = playerWidth;
   
-  console.log("New Canvas:");  
-  console.log(newCanvas.height);  
-  console.log(newCanvas.width);
-
-
   // Draws the video frame to the canvas
   console.log("Photo drawn to newCanvas");
   ctx.drawImage(player, 0, 0, newCanvas.width, newCanvas.height);
   
   // Use unshift to add the newest newCanvas to the front of pictureArray
-  pictureArray.unshift(newCanvas);
-  
+  pictureArray.unshift(newCanvas, i);
+  i++;
   // Adds the newCanvas to the page
   console.log(pictureArray);
-  containerDiv.appendChild(newCanvas); 
+  containerDiv.prepend(newCanvas); 
 }
 
 // 1 second timer to take pics
 const timer = () => {
-  setInterval(picture, 1000);   
+  setInterval(picture,1000);   
 }

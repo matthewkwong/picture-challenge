@@ -2,18 +2,10 @@ body{
     margin:0;
 }
 
-video{
-    /* transform:scale(0.3); */
-}
 
-canvas{
-    /* display: none; */
-    box-sizing: content-box;
-    /* border: solid 2px blue; */
-}
 
 #output-container{
-    box-sizing: content-box;
+    /* box-sizing: content-box; */
     /* border: solid 2px red; */
     display: flex;  
     flex-wrap: wrap;
