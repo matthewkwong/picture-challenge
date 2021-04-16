@@ -13,19 +13,38 @@ var successCallback = function() {
 };
 
 // Attach the video stream to the video element and autoplay.
+// UserMedia method requires either video or audio key and value of true
+// navigator.mediaDevices - predefined property in the javascript library
 const userMediaPromise = navigator.mediaDevices.getUserMedia(constraints); 
 
 const cameraSuccess = function(stream) {
-
   player.srcObject = stream;
-
   // Checks if users approve video camera 
   successCallback();
 }
 
-// run this function when promise succeeds!
+function addOne(x) {
+  return x + 1;
+}
 
-userMediaPromise.then(cameraSuccess).catch(document.write("<h1>User denied access to webcam!</h1>"));
+console.log(addOne(5+1));
+
+let log = console.log;
+log(6);
+
+
+const cameraFail = function(reason){
+  if(reason.name == "NotAllowedError"){
+    document.write(`<h1>User did not allow webcam</h1>`);  
+  }
+  else{
+    document.write(`<h1>User does not have webcam</h1>`);  
+  }
+}
+
+// Promise that runs the video stream if accepted / writes user denied access if failed
+// .catch is attached on what the .then returns
+userMediaPromise.then(cameraSuccess).catch(cameraFail);
 
 const pictureArray = [];
 
@@ -51,9 +70,6 @@ const picture = () => {
   // Draws the video frame to the canvas
   console.log("Photo drawn to newCanvas");
   ctx.drawImage(player, 0, 0, newCanvas.width, newCanvas.height);
-  
-  // Adds the newCanvas to the page
-  console.log(pictureArray);
 
   //1. Remove all children from parent except for video 
   for(let i = 0; i < pictureArray.length; i++){
